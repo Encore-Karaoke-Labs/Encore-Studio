@@ -142,6 +142,7 @@ const pkg = {
         clickPrompt.cleanup();
         wrapper.cleanup();
         await Root.Core.pkg.run("services:Forte", [], true);
+        await Root.Core.pkg.run("services:ProjectManager", [], true);
         checkServicesLoaded();
       });
     }
@@ -152,9 +153,12 @@ const pkg = {
       let curInterval = setInterval(() => {
         try {
           Root.Processes.getService("ForteSvc").data;
+          Root.Processes.getService("ProjectSvc").data;
           clearInterval(curInterval);
           doEverythingElse();
-        } catch (e) {}
+        } catch (e) {
+          console.error(e);
+        }
       }, 50);
     }
 
