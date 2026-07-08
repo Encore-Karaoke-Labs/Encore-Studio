@@ -1,5 +1,0 @@
-[[redirects]]
-  from = "/*"
-  to = "/maintenance.html"
-  status = 302
-  force = true
