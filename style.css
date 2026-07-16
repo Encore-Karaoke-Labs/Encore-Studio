@@ -981,7 +981,11 @@ input[type="range"]::-moz-range-thumb {
 }
 
 ion-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.2em;
+  padding: 2.5px;
   vertical-align: middle;
   pointer-events: none; /* Prevents icons from blocking clicks on buttons */
 }
@@ -1368,6 +1372,7 @@ ion-icon {
   overflow-y: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-content: start;
   gap: 6px;
   padding-right: 5px;
 }
