@@ -39,7 +39,7 @@ const pkg = {
       }
     };
 
-    this.uiManager.injectStyles();
+    // this.uiManager.injectStyles();
     this.uiManager.buildLayout(this.wrapper, this.projectManager);
     this.inputManager.registerGlobalEvents();
     this.playbackManager.registerForteEvents(this.uiManager);
