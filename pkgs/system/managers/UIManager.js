@@ -110,12 +110,12 @@ export default class UIManager {
       .styleJs({ display: "flex", gap: "5px", marginLeft: "10px" })
       .appendTo(toolbar);
     this.elements.undoBtn = new Html("div")
-      .html("↶")
+      .html("<ion-icon name='arrow-undo'></ion-icon>")
       .classOn("st-btn", "st-btn-small")
       .appendTo(historyGroup)
       .on("click", () => this.stateManager.undo());
     this.elements.redoBtn = new Html("div")
-      .html("↷")
+      .html("<ion-icon name='arrow-redo'></ion-icon>")
       .classOn("st-btn", "st-btn-small")
       .appendTo(historyGroup)
       .on("click", () => this.stateManager.redo());
@@ -204,7 +204,7 @@ export default class UIManager {
       .appendTo(patternSidebar);
 
     new Html("div")
-      .text("+ Pat")
+      .html("<ion-icon name='add'></ion-icon> Pat")
       .classOn("st-btn", "st-btn-small")
       .appendTo(patHeader)
       .on("click", () => {
@@ -263,7 +263,7 @@ export default class UIManager {
       .appendTo(channelSidebar);
 
     new Html("div")
-      .text("+ Add")
+      .html("<ion-icon name='add'></ion-icon> Add")
       .classOn("st-btn", "st-btn-small")
       .appendTo(chHeader)
       .on("mousedown", (e) => {
@@ -421,8 +421,10 @@ export default class UIManager {
 
   updatePlayBtnText() {
     if (!this.elements.modeToggleBtn) return;
-    this.elements.modeToggleBtn.text(
-      this.data.playMode === "song" ? "🎵 Song" : "🧩 Pat",
+    this.elements.modeToggleBtn.html(
+      this.data.playMode === "song"
+        ? '<ion-icon name="musical-notes"></ion-icon> Song'
+        : '<ion-icon name="extension-puzzle"></ion-icon> Pat',
     );
     if (this.data.playMode === "song") {
       this.elements.modeToggleBtn.styleJs({
@@ -437,8 +439,13 @@ export default class UIManager {
     }
 
     if (this.data.isPlaying)
-      this.elements.playToggleBtn.html(`■ Stop`).classOn("play-active");
-    else this.elements.playToggleBtn.html(`▶ Play`).classOff("play-active");
+      this.elements.playToggleBtn
+        .html(`<ion-icon name="square"></ion-icon> Stop`)
+        .classOn("play-active");
+    else
+      this.elements.playToggleBtn
+        .html(`<ion-icon name="play"></ion-icon> Play`)
+        .classOff("play-active");
   }
 
   renderPatternList() {
@@ -622,8 +629,10 @@ export default class UIManager {
             textOverflow: "ellipsis",
             background: "rgba(0,0,0,0.3)",
             border: "1px solid rgba(137,207,240,0.5)",
+            display: "flex",
+            gap: "6px",
           })
-          .text(`🎹 ${GM_INSTRUMENTS[ch.instrument]}`)
+          .html(`<span>${GM_INSTRUMENTS[ch.instrument]}</span>`)
           .appendTo(btm)
           .on("mousedown", (e) => {
             e.stopPropagation();
@@ -635,8 +644,22 @@ export default class UIManager {
           });
       }
 
-      this.createSlider(btm, "🔈", ch, "volume", 100, 100);
-      this.createSlider(btm, "LR", ch, "pan", 64, 127);
+      this.createSlider(
+        btm,
+        "<ion-icon name='volume-high'></ion-icon>",
+        ch,
+        "volume",
+        100,
+        100,
+      );
+      this.createSlider(
+        btm,
+        "<ion-icon name='swap-horizontal'></ion-icon>",
+        ch,
+        "pan",
+        64,
+        127,
+      );
 
       item.on("mousedown", (e) => {
         if (
@@ -755,7 +778,7 @@ export default class UIManager {
       })
       .appendTo(parent);
     new Html("span")
-      .text(label)
+      .html(label)
       .styleJs({
         fontSize: "0.9rem",
         opacity: "0.7",
@@ -1705,7 +1728,7 @@ export default class UIManager {
 
     new Html("h2").text("Select Instrument").appendTo(header);
     new Html("div")
-      .text("X")
+      .html("<ion-icon name='close-outline'></ion-icon>")
       .classOn("st-btn-delete")
       .styleJs({ pointerEvents: "auto" })
       .appendTo(header)

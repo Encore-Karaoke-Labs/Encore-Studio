@@ -980,6 +980,12 @@ input[type="range"]::-moz-range-thumb {
   margin-right: 20px;
 }
 
+ion-icon {
+  font-size: 1.2em;
+  vertical-align: middle;
+  pointer-events: none; /* Prevents icons from blocking clicks on buttons */
+}
+
 .st-btn {
   display: inline-flex;
   align-items: center;
